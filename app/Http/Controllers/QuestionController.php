@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AskQuestionRequest;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,9 +37,11 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AskQuestionRequest $request) //Replace Request=>AskQuestionRequest in Request folder.
     {
-        //
+        $request->user()->questions()->create($request->only('title', 'body'));
+        return redirect()->route('questions.index')->with('success',"Your question has been submitted.");
+
     }
 
     /**
