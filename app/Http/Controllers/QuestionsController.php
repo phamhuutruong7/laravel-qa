@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
-class QuestionController extends Controller
+class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => 'index','show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
