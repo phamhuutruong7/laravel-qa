@@ -21,7 +21,7 @@ class Answer extends Model
 
     public function getBodyHtmlAttribute()
     {
-        return \Parsedown::instance()->text($this->body);
+        return clean(\Parsedown::instance()->text($this->body));
     }
 
     public static function boot()   //use this to create Eloquent model. Eloquent model can fire several events (eg: creating, created, updating, updated), allow dev to hook into
