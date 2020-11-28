@@ -80,13 +80,13 @@ class User extends Authenticatable
     public function voteQuestion(Question $question, $vote) //custom method. $vote receives value -1 or 1
     {
         $voteQuestions = $this->voteQuestions();
-        $this->_vote($voteQuestions, $question, $vote);
+        return $this->_vote($voteQuestions, $question, $vote);
     }
 
     public function voteAnswer(Answer $answer, $vote)
     {
         $voteAnswers = $this->voteAnswers();
-        $this->_vote($voteAnswers, $answer, $vote);
+        return $this->_vote($voteAnswers, $answer, $vote);
     }
 
     private function _vote($relationship, $model, $vote)
@@ -104,5 +104,7 @@ class User extends Authenticatable
 
         $model->votes_count = $upVotes + $downVotes;
         $model->save();
+
+        return $model->votes_count;
     }
 }
