@@ -46,7 +46,6 @@ export default {
         edit(){
           this.beforeEditCache = this.body;
           this.editing = true;
-          console.log(this.answer);
         },
 
         cancel(){
