@@ -36,7 +36,6 @@ export default{
                 this.body = '';
                 this.$emit('created', data.answer);
             })
-
         }
     },
     data(){
