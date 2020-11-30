@@ -16,12 +16,8 @@ import Authorization from './authorization/authorize';
 Vue.use(VueIziToast);
 Vue.use(Authorization);
 
+Vue.component('question-page', require('./pages/QuestionPage.vue').default);
 
-
-
-Vue.component('user-info', require('./components/UserInfo.vue').default);
-Vue.component('answers', require('./components/Answers.vue').default);
-Vue.component('vote', require('./components/Vote.vue').default);
 
 
 
