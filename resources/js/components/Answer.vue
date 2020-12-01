@@ -40,7 +40,7 @@ export default {
         return {
 
             body: this.answer.body,
-            bodyHtml: this.answer.bodyHtml,
+            bodyHtml: this.answer.body_html,
             id: this.answer.id,
             questionId: this.answer.question_id,
             beforeEditCache: null,
