@@ -33,6 +33,7 @@ export default{
             questionId: this.question.id,
             count: this.question.answers_count,
             answers: [],
+            answerIds: [],
             nextUrl: null,
         }
     },
@@ -52,10 +53,17 @@ export default{
             this.count--;
         },
         fetch(endpoint){
+            this.answerIds = [];
             axios.get(endpoint)
                 .then(({data}) =>{               //this called object-destructoring.
+                    this.answerIds = data.data.map(a => a.id);
                     this.answers.push(... data.data);
                     this.nextUrl = data.next_page_url;
+                })
+                .then(() => {                   //this thing to add highlight syntax to new loaded answers
+                    this.answerIds.forEach(id => {
+                        this.highlight(`answer-${id}`);
+                    })
                 })
         }
     },

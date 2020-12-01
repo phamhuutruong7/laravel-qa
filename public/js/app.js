@@ -4285,6 +4285,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       questionId: this.question.id,
       count: this.question.answers_count,
       answers: [],
+      answerIds: [],
       nextUrl: null
     };
   },
@@ -4308,15 +4309,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     fetch: function fetch(endpoint) {
       var _this2 = this;
 
+      this.answerIds = [];
       axios.get(endpoint).then(function (_ref) {
         var _this2$answers;
 
         var data = _ref.data;
-
         //this called object-destructoring.
+        _this2.answerIds = data.data.map(function (a) {
+          return a.id;
+        });
+
         (_this2$answers = _this2.answers).push.apply(_this2$answers, _toConsumableArray(data.data));
 
         _this2.nextUrl = data.next_page_url;
+      }).then(function () {
+        //this thing to add highlight syntax to new loaded answers
+        _this2.answerIds.forEach(function (id) {
+          _this2.highlight("answer-".concat(id));
+        });
       });
     }
   },
