@@ -4192,7 +4192,7 @@ __webpack_require__.r(__webpack_exports__);
   // this line of code does not appear in origin code.
   // I added it here because when initiate the beforeEditCache didn't copy the origin body.
   //that makes when 'cancel' is clicked, it calls restoreFromCache
-  // -> that make: this.body = null. and make isInvalid function error.  
+  // -> that make: this.body = null. and make isInvalid function error.
   created: function created() {
     this.beforeEditCache = this.body;
   },
