@@ -38,13 +38,19 @@ export default {
     mixins: [modification],
     data(){
         return {
-
             body: this.answer.body,
             bodyHtml: this.answer.body_html,
             id: this.answer.id,
             questionId: this.answer.question_id,
             beforeEditCache: null,
         }
+    },
+    // this line of code does not appear in origin code.
+    // I added it here because when initiate the beforeEditCache didn't copy the origin body.
+    //that makes when 'cancel' is clicked, it calls restoreFromCache
+    // -> that make: this.body = null. and make isInvalid function error.  
+    created(){
+        this.beforeEditCache = this.body;
     },
 
     methods:{
